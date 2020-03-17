@@ -5,25 +5,25 @@ var connection = require("../config/connection.js");
 // These help avoid SQL injection
 // https://en.wikipedia.org/wiki/SQL_injection
 var orm = {
-    selectAll: function(tableName) {
+    selectAll: function(tableName, cb) {
         let queryString = "Select * from ??";
         connection.query(queryString, [tableName], function (err, results) {
             if (err) throw err;
-            console.log(results);
+            cb(results);
         });
     },
-    insertOne: function(tableName, burger_name, burger_val) {
+    insertOne: function(tableName, burger_name, burger_val, cb) {
         let queryString = "Insert into ?? () value ()";
         connection.query(queryString, [tableName, burger_name, burger_val], function (err, results) {
             if (err) throw err;
-            console.log(results);
+            cb(results);
         });
     },
-    updateOne: function(tableName, columnName1, boolean1, columnName2, boolean2) {
+    updateOne: function(tableName, columnName1, boolean1, columnName2, boolean2, cb) {
         let queryString = "Update ?? Set ? = ? Where ? = ?";
         connection.query(queryString, [tableName, columnName1, boolean1, columnName2, boolean2], function (err, results) {
             if (err) throw err;
-            console.log(results);
+            cb(results);
         });
     }
 };

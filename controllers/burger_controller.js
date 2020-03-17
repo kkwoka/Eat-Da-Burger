@@ -1,7 +1,7 @@
 let express = require("express");
 
 // import the model (burger.js) to use its databse functions.
-let burger = require("../models/burger");
+let burger = require("../models/burger.js");
 
 let router = express.Router();
 
@@ -16,6 +16,29 @@ router.get("/", function(req, res) {
     });
 });
 
+router.post("/api/burgers", function(req, res) {
+    // execute insertOne function in burger.js
+    burger.insertOne([
+        // column names from mysql table
+        "burger_name", "devoured"
+    ], [
+        // .name and .sleepy come from the front end (on cat.js file, there is a 
+        // var newCat that has properties name: and sleepy:; those need to equal each other!)
+        req.body.name, req.body.sleepy
+    ], function(result) {
+        res.json({})
+    })
+})
+
+router.put("api/burgers/:id", function(req,res) {
+    let condition = "id = " + req.params.id;
+
+    console.log("condition:", condition);
+
+    burger.updateOne({
+        
+    })
+})
 
 
 

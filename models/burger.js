@@ -1,4 +1,4 @@
-let orm = require("../config/orm");
+let orm = require("../config/orm.js");
 
 let burg = {
     selectAll: function (cb) {
@@ -18,6 +18,7 @@ let burg = {
     }
 };
 
+// Export the database functions for the controller (burger_controller.js).
 module.exports = burg;
 
 
