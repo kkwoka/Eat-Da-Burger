@@ -1,0 +1,13 @@
+body {
+    background-color: aqua;
+}
+
+li {
+    padding: 5px;
+    margin: 5px;
+    background: #faebd7;
+}
+
+#burgerpic {
+    width: 300px;
+}

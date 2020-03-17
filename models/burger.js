@@ -1,4 +1,4 @@
-let orm = require("../config/orm.js");
+let orm = require("../config/orm");
 
 let burg = {
     selectAll: function (cb) {
@@ -8,11 +8,11 @@ let burg = {
     },
     insertOne: function (cols, vals, cb) {
         orm.insertOne("burgers", cols, vals, function(res) {
-            CSS(res);
+            cb(res);
         });
     },
-    updateOne: function(tableName, columnName1, boolean1, columnName2, boolean2, cb) {
-        orm.updateOne("burgers", tableName, columnName1, boolean1, columnName2, boolean2, function(res) {
+    updateOne: function(objColVals, condition, cb) {
+        orm.updateOne("burgers", objColVals, condition, function(res) {
             cb(res);
         });
     }
@@ -20,11 +20,3 @@ let burg = {
 
 // Export the database functions for the controller (burger_controller.js).
 module.exports = burg;
-
-
-// tableName, burger_name, burger_val
-// orm.insertOne("burgers", "Kid's");
-
-// tableName, columnName1, boolean1, columnName2, boolean2
-// orm.updateOne("burgers", "devoured", "true", "id", "false");
-
