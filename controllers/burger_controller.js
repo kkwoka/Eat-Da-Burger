@@ -2,7 +2,6 @@ let express = require("express");
 let burger = require("../models/burger");
 let router = express.Router();
 
-// Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
     burger.selectAll(function(data) {
         let hbsObject = {
@@ -14,13 +13,9 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers/", function(req, res) {
-    // execute insertOne function in burger.js
     burger.insertOne([
-        // column names from mysql table
         "burger_name"
     ], [
-        // .name and .devoured come from the front end (on cat.js file, there is a 
-        // var newBurger that has properties name: and devoured:; those need to equal each other!)
         req.body.burger_name
     ], function(result) {
         res.json({ id: result.insertId })

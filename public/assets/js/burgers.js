@@ -1,4 +1,3 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
     $(".change-devoured").on("click", function(event) {
       var id = $(this).data("id");
@@ -28,7 +27,6 @@ $(function() {
   
       var newBurger = {
         burger_name: $("#bur").val().trim(),
-        // devoured: $("[name=eatMe]").val().trim()
       };
   
       // Send the POST request.
