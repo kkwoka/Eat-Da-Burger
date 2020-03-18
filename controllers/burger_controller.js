@@ -13,7 +13,7 @@ router.get("/", function(req, res) {
     });
 });
 
-router.post("/api/burgers", function(req, res) {
+router.post("/api/burgers/", function(req, res) {
     // execute insertOne function in burger.js
     burger.insertOne([
         // column names from mysql table
@@ -27,14 +27,14 @@ router.post("/api/burgers", function(req, res) {
     })
 })
 
-router.put("api/burgers/:id", function(req,res) {
+router.put("/api/burgers/:id", function(req,res) {
     let condition = "id = " + req.params.id;
 
     console.log("condition:", condition);
     console.log("req.body.devoured: ",req.body.devoured)
 
     burger.updateOne({
-        devoured: req.body.devoured
+        devoured: true
 
     }, condition, function(result) {
         if (result.changedRows == 0) {
